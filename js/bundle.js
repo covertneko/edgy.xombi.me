@@ -54,11 +54,18 @@
 
 	  audio.loop = true;
 
+	  // Pause/play audio with space
 	  window.addEventListener('keydown', function (event) {
 	    if (event.keyCode == KEY_SPACE) {
 	      audio.paused ? audio.play() : audio.pause();
 	    }
 	  });
+
+	  // Autoplay that shit
+	  audio.play();
+
+	  // Animation stuff.
+	  // TODO: Better comments
 
 	  var pageActor = new _popmotion.Actor({
 	    element: 'body'

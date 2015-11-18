@@ -6,6 +6,7 @@ import {Actor, Simulate, Input, Track, calc} from 'popmotion';
 
   audio.loop = true
 
+  // Pause/play audio with space
   window.addEventListener('keydown', (event) => {
     if (event.keyCode == KEY_SPACE) {
       (audio.paused) ?
@@ -14,6 +15,11 @@ import {Actor, Simulate, Input, Track, calc} from 'popmotion';
     }
   })
 
+  // Autoplay that shit
+  audio.play()
+
+  // Animation stuff.
+  // TODO: Better comments
 
   var pageActor = new Actor({
     element: 'body'
