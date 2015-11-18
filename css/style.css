@@ -18,8 +18,13 @@ body {
 }
 
 .page-title {
+  position: relative;
+  /* Vertically center */
+  top: 50%;
+  transform: translateY(-50%);
   font-family: "Comic Sans MS";
   font-size: 600%;
-  text-shadow: 0 0 30px white;
+  color: white;
+  text-shadow: 0 0 30px red;
   margin: 0 auto;
 }
