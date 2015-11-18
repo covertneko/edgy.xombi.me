@@ -60,27 +60,58 @@
 	    }
 	  });
 
-	  var bodyActor = new _popmotion.Actor({
-	    element: 'body',
-	    onUpdate: function onUpdate(output) {
-	      // console.log(output)
-	    }
+	  var pageActor = new _popmotion.Actor({
+	    element: 'body'
 	  });
 
-	  var foo = new _popmotion.Tween({
-	    yoyo: true,
+	  var shakeData = new _popmotion.Input({
+	    shakeX: 2500,
+	    shakeY: 2500
+	  });
+
+	  var shakeSource = new _popmotion.Track({
+	    smooth: 50,
+	    direct: true,
 	    values: {
 	      x: {
-	        current: -100,
-	        to: 100
+	        watch: 'shakeX',
+	        mapFrom: [0, 5000],
+	        mapTo: [-100, 100]
+	      },
+	      y: {
+	        watch: 'shakeY',
+	        mapFrom: [0, 5000],
+	        mapTo: [-100, 100]
 	      }
 	    }
 	  });
 
-	  bodyActor.start(foo.extend({
-	    duration: 200,
-	    ease: 'backInOut'
-	  }));
+	  var springBack = new _popmotion.Simulate({
+	    simulate: 'spring',
+	    friction: 0.15,
+	    spring: 300,
+	    values: {
+	      x: {
+	        to: 0
+	      },
+	      y: {
+	        to: 0
+	      }
+	    }
+	  });
+
+	  setInterval(function () {
+	    shakeData.update({
+	      shakeX: _popmotion.calc.random(0, 5000),
+	      shakeY: _popmotion.calc.random(0, 5000)
+	    });
+	  }, 100);
+
+	  pageActor.start(shakeSource.extend({
+	    onComplete: function onComplete() {
+	      undefined.start(springBack);
+	    }
+	  }), shakeData);
 	})();
 
 /***/ },

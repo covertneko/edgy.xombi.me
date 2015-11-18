@@ -1,4 +1,4 @@
-import {Actor, Tween} from 'popmotion';
+import {Actor, Simulate, Input, Track, calc} from 'popmotion';
 
 (() => {
   const KEY_SPACE = 32
@@ -15,25 +15,56 @@ import {Actor, Tween} from 'popmotion';
   })
 
 
-  var bodyActor = new Actor({
-    element: 'body',
-    onUpdate: (output) => {
-      // console.log(output)
-    }
+  var pageActor = new Actor({
+    element: 'body'
   })
 
-  var foo = new Tween({
-    yoyo: true,
+  var shakeData = new Input({
+    shakeX: 2500,
+    shakeY: 2500
+  })
+
+  var shakeSource = new Track({
+    smooth: 50,
+    direct: true,
     values: {
       x: {
-        current: -100,
-        to: 100
+        watch: 'shakeX',
+        mapFrom: [0, 5000],
+        mapTo: [-100, 100]
+      },
+      y: {
+        watch: 'shakeY',
+        mapFrom: [0, 5000],
+        mapTo: [-100, 100]
       }
     }
   })
 
-  bodyActor.start(foo.extend({
-    duration: 200,
-    ease: 'backInOut'
-  }))
+  var springBack = new Simulate({
+    simulate: 'spring',
+    friction: 0.15,
+    spring: 300,
+    values: {
+      x: {
+        to: 0
+      },
+      y: {
+        to: 0
+      }
+    }
+  })
+
+  setInterval(() => {
+    shakeData.update({
+      shakeX: calc.random(0, 5000),
+      shakeY: calc.random(0, 5000)
+    })
+  }, 100)
+
+  pageActor.start(shakeSource.extend({
+    onComplete: () => {
+      this.start(springBack)
+    }
+  }), shakeData)
 }) ()
