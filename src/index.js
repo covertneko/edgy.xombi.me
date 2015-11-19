@@ -22,7 +22,7 @@ import {Actor, Simulate, Input, Track, calc} from 'popmotion';
   // TODO: Better comments
 
   var pageActor = new Actor({
-    element: 'body'
+    element: '.background'
   })
 
   var shakeData = new Input({

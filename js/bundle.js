@@ -68,7 +68,7 @@
 	  // TODO: Better comments
 
 	  var pageActor = new _popmotion.Actor({
-	    element: 'body'
+	    element: '.background'
 	  });
 
 	  var shakeData = new _popmotion.Input({
