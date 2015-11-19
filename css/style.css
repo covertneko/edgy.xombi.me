@@ -33,3 +33,14 @@ body {
   text-shadow: 0 0 30px red;
   margin: 0 auto;
 }
+
+.page-title::before {
+  z-index: -1;
+  position: absolute;
+  content: "WAKE ME UP";
+  left: 0;
+  right: 0;
+  top: -10px;
+  color: black;
+  text-shadow: 0 0 30px red;
+}
