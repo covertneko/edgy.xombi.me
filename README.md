@@ -1,4 +1,4 @@
-# www.xombi.me
+# [edgy.xombi.me](http://edgy.xombi.me)
 
 **WARNING - has extremely annoying autoplaying audio.**
 
