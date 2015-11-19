@@ -112,7 +112,7 @@
 	      shakeX: _popmotion.calc.random(0, 5000),
 	      shakeY: _popmotion.calc.random(0, 5000)
 	    });
-	  }, 100);
+	  }, 40);
 
 	  pageActor.start(shakeSource.extend({
 	    onComplete: function onComplete() {

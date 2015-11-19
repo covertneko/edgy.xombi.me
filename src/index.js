@@ -66,7 +66,7 @@ import {Actor, Simulate, Input, Track, calc} from 'popmotion';
       shakeX: calc.random(0, 5000),
       shakeY: calc.random(0, 5000)
     })
-  }, 100)
+  }, 40)
 
   pageActor.start(shakeSource.extend({
     onComplete: () => {
